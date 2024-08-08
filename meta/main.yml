@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  role_name: percona_xtrabackup
+  namespace: boutetnico
+  author: Nicolas Boutet
+  description: Install and configure percona-xtrabackup.
+  license: MIT
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+        - noble
+    - name: Debian
+      versions:
+        - bookworm
+        - bullseye
+  galaxy_tags:
+    - percona
+    - xtrabackup
+dependencies:
+  - role: boutetnico.percona_release
+    vars:
+      percona_release_repositories:
+        - pxb-8x-innovation

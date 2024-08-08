@@ -1,0 +1,7 @@
+---
+- name: Ensure percona XtraBackup is installed
+  ansible.builtin.apt:
+    name: "{{ percona_xtrabackup_packages }}"
+    state: "{{ percona_xtrabackup_package_version }}"
+  environment:
+    PERCONA_TELEMETRY_DISABLE: "1"

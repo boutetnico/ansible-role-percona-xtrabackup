@@ -1,0 +1,4 @@
+---
+percona_xtrabackup_packages:
+  - percona-xtrabackup-83
+percona_xtrabackup_package_version: present
