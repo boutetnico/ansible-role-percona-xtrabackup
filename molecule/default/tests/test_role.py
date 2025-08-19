@@ -4,7 +4,7 @@ import pytest
 @pytest.mark.parametrize(
     "name",
     [
-        ("percona-xtrabackup-83"),
+        ("percona-xtrabackup-84"),
     ],
 )
 def test_packages_are_installed(host, name):

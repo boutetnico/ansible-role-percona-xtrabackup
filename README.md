@@ -4,7 +4,7 @@
 ansible-role-percona-xtrabackup
 ============================
 
-This role installs [Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/innovation-release/).
+This role installs [Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/8.4/index.html).
 
 Requirements
 ------------
