@@ -1,27 +1,19 @@
 ---
-name: Test ansible role
+name: Lint
 
 "on":
   pull_request:
   push:
     branches:
       - master
-  schedule:
-    - cron: "22 2 * * 2"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  test:
-    runs-on: ${{ matrix.runner }}
-    strategy:
-      fail-fast: false
-      matrix:
-        runner:
-          - ubuntu-latest
-          - ubuntu-24.04-arm
+  lint:
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v6
@@ -32,13 +24,22 @@ jobs:
           python-version: "3.x"
 
       - name: Install dependencies
-        run: pip install ansible docker molecule molecule-plugins[docker] pytest-testinfra
+        run: pip install ansible ansible-lint black yamllint
 
       - name: Install role dependencies
         run: ansible-galaxy role install -r meta/requirements.yml
 
-      - name: Run Molecule
-        run: molecule test
+      - name: Run yamllint
+        run: yamllint .
         env:
-          ANSIBLE_FORCE_COLOR: "1"
+          PY_COLORS: "1"
+
+      - name: Run ansible-lint
+        run: ansible-lint
+        env:
+          PY_COLORS: "1"
+
+      - name: Run black
+        run: black --check .
+        env:
           PY_COLORS: "1"
